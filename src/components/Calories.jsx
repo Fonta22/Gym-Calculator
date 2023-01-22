@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
-import { calculateCalories } from '../calories.ts';
+import { calculateCalories } from '../scripts/calories.ts';
 
 const options = [
     { value: 1.2, label: 'No sport' },
@@ -102,7 +102,7 @@ const Calories = () => {
                         <td></td>
                         <td>{calories.cal} cal</td>
                         <td>{calories.kcal} kcal</td>
-                        <td>{calories.kj} KJ</td>
+                        {/*<td>{calories.kj} KJ</td>*/}
                     </tr>
                 </tbody>
             </table>
