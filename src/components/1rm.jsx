@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import {  } from '../scripts/1rm.ts';
+import { percentages, calculate1RM } from '../scripts/1rm.ts';
 
 const RM = () => {
+    console.log(calculate1RM(50, 8));
     return (
         <div>
             <br />
