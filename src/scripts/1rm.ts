@@ -45,7 +45,7 @@ const getValues = (weight: number, reps: number): number[] => [
 
 ];
 
-export const percentages: number[] = [1, .94, .92, .89, .87, .84, .82, .80, .78, .76, .75, .73];
+export const percentages: number[] = [100, 94, 92, 89, 87, 84, 82, 80, 78, 76, 75, 73];
 
 export function calculate1RM(weight: number, reps: number): number[] {
     let values: number[] = getValues(weight, reps);
@@ -59,7 +59,7 @@ export function calculate1RM(weight: number, reps: number): number[] {
 
     values = [];
     for (const pct of percentages) {
-        values.push(Math.round(rm * pct));
+        values.push(Math.round(rm * (pct / 100)));
     }
 
     return values;

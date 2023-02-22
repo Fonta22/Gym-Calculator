@@ -2,7 +2,21 @@ import React, { useState } from 'react';
 import { percentages, calculate1RM } from '../scripts/1rm.ts';
 
 const RM = () => {
-    console.log(calculate1RM(50, 8));
+    const getLabels = () => {
+        let labels = [];
+        for (let i = 1; i <= 12; i++) {
+            labels.push(i + 'RM');
+        }
+        return labels;
+    }
+
+    const defaultValues = calculate1RM(50, 8);
+
+    const [values, setValues] = useState(defaultValues);
+    const [labels, setLabels] = useState(getLabels());
+
+
+    console.log(percentages, values, values.slice(8));
     return (
         <div>
             <br />
@@ -27,121 +41,29 @@ const RM = () => {
             <br />
             <button type="button" className="btn btn-primary">Submit</button>
             <br />
-            {/*<div className="form-check">
-                <input className="form-check-input" type="checkbox" id="check" />
-                <label className="form-check-label" htmlFor="check">
-                    Brzycki
-                </label>
-            </div>
-            <div className="form-check">
-                <input className="form-check-input" type="checkbox" id="check" />
-                <label className="form-check-label" htmlFor="check">
-                    Epley
-                </label>
-            </div>
-            <div className="form-check">
-                <input className="form-check-input" type="checkbox" id="check" />
-                <label className="form-check-label" htmlFor="check">
-                    Lander
-                </label>
-            </div>
-            <div className="form-check">
-                <input className="form-check-input" type="checkbox" id="check" />
-                <label className="form-check-label" htmlFor="check">
-                    O'Conner et al.
-                </label>
-            </div>
-            <div className="form-check">
-                <input className="form-check-input" type="checkbox" id="check" />
-                <label className="form-check-label" htmlFor="check">
-                    Lombardi
-                </label>
-            </div>
-            <div className="form-check">
-                <input className="form-check-input" type="checkbox" id="check" />
-                <label className="form-check-label" htmlFor="check">
-                    Mayhew et al.
-                </label>
-            </div>
-            <div className="form-check">
-                <input className="form-check-input" type="checkbox" id="check" />
-                <label className="form-check-label" htmlFor="check">
-                    Wathen
-                </label>
-            </div>*/}
             <br />
             <table className='table table-dark'>
                 <tbody>
-                    <tr>
-                        <td><b>1RM</b></td>
-                        <td><b>2RM</b></td>
-                        <td><b>3RM</b></td>
-                        <td><b>4RM</b></td>
-                    </tr>
-                    <tr>
-                        {/*
-                        #cc0000
-                        #d5321b
-                        #de4c31
-                        #e66346
-                        #ed775c
-                        #f38b72
-                        #f89f88
-                        #fcb29f
-                        #ffc5b6
-                        #ffd8ce
-                        #ffece6
-                        #ffffff
-                        */}
-                        <td style={{color:'#cc0000'}}>100%</td>
-                        <td style={{color:'#d5321b'}}>94%</td>
-                        <td>92%</td>
-                        <td>89%</td>
-                    </tr>
-                    <tr>
-                        <td id='1rm'>0</td>
-                        <td id='2rm'>0</td>
-                        <td id='3rm'>0</td>
-                        <td id='4rm'>0</td>
-                    </tr>
-                    <tr>e</tr>
-                    <tr>
-                        <td><b>5RM</b></td>
-                        <td><b>6RM</b></td>
-                        <td><b>7RM</b></td>
-                        <td><b>8RM</b></td>
-                    </tr>
-                    <tr>
-                        <td>87%</td>
-                        <td>84%</td>
-                        <td>82%</td>
-                        <td>80%</td>
-                    </tr>
-                    <tr>
-                        <td id='5rm'>0</td>
-                        <td id='6rm'>0</td>
-                        <td id='7rm'>0</td>
-                        <td id='8rm'>0</td>
-                    </tr>
-                    <tr>e</tr>
-                    <tr>
-                        <td><b>9RM</b></td>
-                        <td><b>10RM</b></td>
-                        <td><b>11RM</b></td>
-                        <td><b>12RM</b></td>
-                    </tr>
-                    <tr>
-                        <td>78%</td>
-                        <td>76%</td>
-                        <td>75%</td>
-                        <td>73%</td>
-                    </tr>
-                    <tr>
-                        <td id='9rm'>0</td>
-                        <td id='10rm'>0</td>
-                        <td id='11rm'>0</td>
-                        <td id='12rm'>0</td>
-                    </tr>
+                    {[[0, 4], [4, 8], [8, 12]].map((limit, i) => {
+                            return (<>
+                                <tr>
+                                    {labels.slice(limit[0], limit[1]).map((value, i) => {
+                                        return <td><b>{value}</b></td>
+                                    })}
+                                </tr>
+                                <tr>
+                                   {percentages.slice(limit[0], limit[1]).map((value, i) => {
+                                        return <td color='#FFF'>{value}%</td>
+                                    })}
+                                </tr>
+                                <tr>
+                                    {values.slice(limit[0], limit[1]).map((value, i) => {
+                                        return <td id={(i + 1) + 'rm'}>{value}</td>
+                                    })}
+                                </tr>
+                                <tr>&nbsp;</tr>
+                            </>)
+                    })}
                 </tbody>
             </table>            
         </div>
