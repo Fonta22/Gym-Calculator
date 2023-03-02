@@ -13,7 +13,11 @@ const RM = () => {
     const defaultValues = calculate1RM(50, 8);
 
     const [values, setValues] = useState(defaultValues);
+
     const [labels, setLabels] = useState(getLabels());
+    const [color, setColors] = useState('#cc0000');
+        
+    //['#cc0000', '#d73920', '#e2573a', '#eb7154', '#f3896f', '#f9a18a', '#fdb8a7', '#ffd0c3', '#ffe7e1', '#ffffff']
 
     const [weight, setWeight] = useState(50);
     const [reps, setReps] = useState(8);
@@ -72,7 +76,7 @@ const RM = () => {
                                         return <td><b>{value}</b></td>
                                     })}
                                 </tr>
-                                <tr>
+                                <tr style={{ color: '#cc0000' }}>
                                    {percentages.slice(limit[0], limit[1]).map((value, i) => {
                                         return <td color='#FFF'>{value}%</td>
                                     })}

@@ -98,10 +98,9 @@ const Calories = () => {
             <table className="table table-dark">
                 <tbody>
                     <tr>
-                        <td>For volume</td>
+                        <td>For bulking</td>
                         <td></td>
-                        <td>{calories.cal} cal</td>
-                        <td>{calories.kcal} kcal</td>
+                        <td>{calories.cal} kcal</td>
                         {/*<td>{calories.kj} KJ</td>*/}
                     </tr>
                 </tbody>
